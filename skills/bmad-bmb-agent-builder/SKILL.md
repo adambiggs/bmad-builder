@@ -48,18 +48,25 @@ Greet user as `{user_name}`, use `{communication_language}` for all communicatio
 - "build an agent", "create an agent", "make an AI assistant"
 - "new agent", "design an agent"
 
-**Test requests** → Route to Test Agent with phrase intent such as:
-- "test this agent", "run evals", "hitl testing", "test scripts"
+**Run evals requests** → Route to Eval Runner for existing agents:
+- "test this agent", "run evals", "re-run evals"
+- Only for agents that already have `tests/eval.json`
 
-**Unclear intent** → Offer all modes and ask user to choose:
-   - **Build** — Create new agents through conversational discovery
+**Design evals requests** → Route to Eval Designer:
+- "design evals", "create evals", "improve evals"
+- For agents that need new or updated eval scenarios
+
+**Unclear intent** → Offer modes and ask user to choose:
+   - **Build** — Create new agents through conversational discovery (includes eval design + run)
    - **Quality Optimize** — Validate and improve existing agents
-   - **Test** — Run HITL evals and Python tests
+   - **Run Evals** — Re-run HITL evals on an existing agent
+   - **Design Evals** — Create or improve eval scenarios for an existing agent
 
 3. Proceed to appropriate section:
    - **Quality Optimizer** — Load `prompts/quality-optimizer.md` and validate the provided agent. Pass `{autonomous_mode}` flag.
-   - **Build Process** — Begin agent discovery and building
-   - **Test Agent** — Run HITL evals and tests
+   - **Build Process** — Begin agent discovery and building (evals are part of this flow)
+   - **Run Evals** — Load `prompts/eval-runner.md` with the target agent path
+   - **Design Evals** — Load `prompts/eval-designer.md` with the target agent path
 
 ## Build Process
 
@@ -132,10 +139,7 @@ Work through these conversationally:
     - ❌ `{project-root}/{output_folder}/file.md` (double-prefix breaks resolution)
   - **No absolute paths** (`/Users/...`) or relative prefixes (`./`, `../`)
 
-- **Testing preference:** Ask about testing interest (actual eval design happens AFTER build):
-  - **HITL Evals** — Scenario-based tests simulating conversations with diverse user personas
-  - **Python Tests** — Automated tests for scripts (if applicable)
-  - **Skip for now** — Tests can be added later
+*Note: HITL evals are automatically designed and run after build. No need to ask about testing preference during requirements.*
 
 ### Phase 4: Draft & Refine
 
@@ -187,25 +191,22 @@ When confirmed:
 
 5. Output to `bmad_builder_output_folder` from config, or `{project-root}/bmad-builder-creations/`
 
-### Phase 6: Summary & Next Steps
+### Phase 6: Summary & Eval Loop
 
 Present what was built: location, structure, first-run behavior, capabilities. Ask if adjustments needed.
 
-**Then propose Full Quality Scan:**
+**Then immediately proceed to evals — don't ask, just do it:**
 
-Ask: *"Your agent is ready! Would you like to run a Full Quality Scan to validate the structure and catch any issues before testing?"*
+1. Load `prompts/eval-designer.md` — propose eval plan, ask for gaps, create eval.json + fixtures
+2. Once evals are created, load `prompts/eval-runner.md` — run all scenarios with proper 3-agent isolation
+3. Present results. If failures exist, iterate: fix agent → re-run failed scenarios → repeat
+4. Once all evals pass (or user accepts results), the build loop is complete
 
-If yes, load `prompts/quality-optimizer.md` with `{scan_mode}=full` and the new agent path.
+**After the build+eval loop completes, offer quality optimization:**
 
-**Then propose testing:**
+Ask: *"Build and evals are done. Would you like to run a Quality Scan to optimize the agent further?"*
 
-If user indicated interest in HITL evals during Phase 3, now is the time to design them. The agent exists — we can see what it actually does and design meaningful tests.
-
-Ask: *"Now that the agent is built, would you like to design HITL eval scenarios? I'll walk through the agent's capabilities and help create comprehensive test cases."*
-
-If yes, load `prompts/hitl-evals-design.md` and work through the eval design process systematically.
-
-**If they want to test immediately:** After evals are designed and written, proceed to `Test Agent` section to run them.
+If yes, load `prompts/quality-optimizer.md` with `{scan_mode}=full` and the agent path.
 
 Remind them: BMad module system compliant. Use `bmad-init` skill to integrate into a project.
 
@@ -292,32 +293,18 @@ In autonomous mode:
 9. **Documentation Quality** — Clarity, completeness, consistency
 10. **Security & Safety** — Access control, input handling, data safety
 
-## Test Agent
+## HITL Eval Agents
 
-Run tests against existing agents to validate behavior and catch issues.
+Located at `agents/UserSimulator.md` and `agents/HITLGrader.md` — these are spawned as separate subagents during eval execution. **Never pre-read these files** — the eval-runner orchestrator passes them to subagents just like quality-optimizer passes scanner agents.
 
-**When to test:**
-- After building a new agent
-- After making significant changes
-- Before deploying to production
+- **UserSimulator** — Role-plays user personas during evals. Receives scenario context and conversation history. Ends with `===SIMULATION_END===` when the interaction naturally concludes.
+- **HITLGrader** — Evaluates completed conversation transcripts against success criteria. Returns structured JSON grading with evidence from the transcript.
 
-**Test types:**
-- **HITL Evals** — Scenario-based conversation testing (load `prompts/hitl-evals-design.md` for design and execution)
-- **Python Tests** — Automated tests for agent scripts (if applicable)
+## Running Python Tests
 
-**The testing loop:**
-1. **Build** → Create or modify the agent
-2. **Eval** → Run HITL evals and/or Python tests
-3. **Report** → Present findings with specific failures
-4. **Improve** → Make targeted changes based on results
-5. **Repeat** → Run next iteration, track progress
+If the agent includes `scripts/run-tests.sh`, run those tests separately:
+```bash
+bash {agent-path}/scripts/run-tests.sh -v
+```
 
-**Getting started:**
-
-If no evals exist at `tests/eval.json`, offer to create them first using `prompts/hitl-evals-design.md`.
-
-When ready to run tests, load `prompts/hitl-evals-design.md` for full execution instructions including:
-- Eval validation and setup
-- Scenario execution with conversation simulation
-- Grading and results aggregation
-- Iteration handling
+Report Python test results alongside HITL eval results.
