@@ -39,8 +39,8 @@ SCHEMA_FILENAME = "bmad-manifest-schema.json"
 
 
 def get_schema_path() -> Path:
-    """Schema is co-located: same directory as this script's parent (skill root)."""
-    return Path(__file__).parent.parent / SCHEMA_FILENAME
+    """Schema is co-located with this script."""
+    return Path(__file__).parent / SCHEMA_FILENAME
 
 
 def get_manifest_path(skill_path: Path) -> Path:

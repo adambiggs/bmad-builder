@@ -72,6 +72,6 @@ Workflows are also excellent as the **internal capabilities** of an agent. Build
 
 ## Building Workflows
 
-The **BMad Workflow Builder** (`bmad-bmb-workflow-builder`) uses the same six-phase conversational discovery as the Agent Builder — intent, classification, requirements, drafting, building, and quality optimization. It produces a ready-to-use skill folder.
+The **BMad Workflow Builder** (`bmad-workflow-builder`) uses the same six-phase conversational discovery as the Agent Builder — intent, classification, requirements, drafting, building, and quality optimization. It produces a ready-to-use skill folder.
 
 See the [Builder Commands Reference](/reference/builder-commands.md) for details on the build process phases and capabilities.

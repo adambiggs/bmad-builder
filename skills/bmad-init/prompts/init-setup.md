@@ -1,6 +1,8 @@
 # Init Path — First-Time Setup
 
-When config is missing or a module isn't configured yet, run the init flow. Use the AskUserQuestions tool if available. If not, just ask the questions in a way that gives the user numbered choices when there are options. if its free text, then obviously they can enter anything. if its a boolean, offer it like `Enter [T]rue or [F]alse`. But the preference would be the AskUserQuestions tool.
+Communicate in `{communication_language}`. Output documents in `{document_output_language}`.
+
+When config is missing or a module isn't configured yet, run the init flow. Use the AskUserQuestions tool if available. If not, ask the questions in a way that gives the user numbered choices when there are options. If its free text, they can enter anything. If its a boolean, offer it like `Enter [T]rue or [F]alse`. Prefer the AskUserQuestions tool when available.
 
 ### Step 1: Check what needs setup
 
@@ -60,7 +62,7 @@ The `--answers` JSON format — use the question keys and `user_setting` flags e
 }
 ```
 
-Variables with `"user_setting": true` go to `_bmad/user-config.yaml` (git-ignored). Others go to `_bmad/config.yaml` (committed).
+Variables with `"user_setting": true` go to `{project-root}/_bmad/user-config.yaml` (git-ignored). Others go to `{project-root}/_bmad/config.yaml` (committed).
 
 ### Step 5: Return vars
 
@@ -92,8 +94,8 @@ Variables with `:default` use that value if not found in config. Variables witho
 
 ## Config Files
 
-- **`_bmad/config.yaml`** — Project settings, safe to commit to version control
-- **`_bmad/user-config.yaml`** — User-specific settings, should be git-ignored
+- **`{project-root}/_bmad/config.yaml`** — Project settings, safe to commit to version control
+- **`{project-root}/_bmad/user-config.yaml`** — User-specific settings, should be git-ignored
 
 Both use the same structure:
 
@@ -107,3 +109,10 @@ modules:
     config:
       project_name: My Project
 ```
+
+## Stage Complete
+
+This stage is complete when:
+- The `check` command status has been resolved (questions asked if needed, config written if it didn't exist)
+- The fast-path loader returns resolved vars as JSON
+→ Store returned vars as `{var-name}` and return them to the calling skill

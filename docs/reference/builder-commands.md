@@ -3,7 +3,7 @@ title: "Builder Commands Reference"
 description: Complete reference for all capabilities, modes, and paths available in the Agent Builder and Workflow Builder
 ---
 
-Reference for the two core BMad Builder skills — the Agent Builder (`bmad-bmb-agent-builder`) and the Workflow Builder (`bmad-bmb-workflow-builder`). Both share the same two capabilities but apply them to different skill types.
+Reference for the two core BMad Builder skills — the Agent Builder (`bmad-agent-builder`) and the Workflow Builder (`bmad-workflow-builder`). Both share the same two capabilities but apply them to different skill types.
 
 ## Capabilities Overview
 

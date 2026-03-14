@@ -6,8 +6,8 @@ Every BMad skill has a `bmad-manifest.json` at its root. This is the unified for
 
 ```
 {skillname}/
-├── SKILL.md              # name, description, workflow content
-├── bmad-manifest.json    # Capabilities, module integration
+├── SKILL.md              # name, description, persona content
+├── bmad-manifest.json    # Capabilities, module integration, persona distillate
 └── ...
 ```
 
@@ -27,26 +27,28 @@ description: [5-8 word summary]. [Use when user says 'X' or 'Y'.]
 ```json
 {
   "module-code": "bmb",
-  "replaces-skill": "bmad-bmb-original-skill",
+  "replaces-skill": "bmad-original-agent",
+  "persona": "A succinct distillation of who this agent is and how they operate.",
   "has-memory": true,
   "capabilities": [
     {
       "name": "build",
       "menu-code": "BP",
-      "description": "Builds skills through conversational discovery. Outputs to skill folder.",
+      "description": "Builds agents through conversational discovery. Outputs to skill folder.",
       "supports-autonomous": true,
       "prompt": "prompts/build-process.md",
-      "phase-name": "design",
-      "after": ["create-requirements"],
-      "before": ["quality-optimize"],
-      "is-required": true,
+      "phase-name": "anytime",
+      "after": ["create-prd"],
+      "before": [],
+      "is-required": false,
       "output-location": "{bmad_builder_output_folder}"
     },
     {
-      "name": "validate",
-      "menu-code": "VL",
-      "description": "Runs validation checks and produces quality report.",
-      "supports-autonomous": true
+      "name": "external-tool",
+      "menu-code": "ET",
+      "description": "Delegates to another registered skill.",
+      "supports-autonomous": false,
+      "skill-name": "bmad-some-other-skill"
     }
   ]
 }
@@ -99,8 +101,6 @@ No type field needed — inferred from content:
 
 All module skills MUST use the `bmad-init` skill at startup.
 
-See `resources/complex-workflow-patterns.md` for the config loading pattern.
-
 ## Path Construction Rules — CRITICAL
 
 Never use `{skill-root}`. Only use `{project-root}` for `_bmad` paths.
@@ -113,9 +113,9 @@ Never use `{skill-root}`. Only use `{project-root}` for `_bmad` paths.
 **Correct:**
 ```
 resources/reference.md                # Skill-internal (bare relative)
-prompts/stage-one.md                  # Skill-internal (bare relative)
-{project-root}/_bmad/planning/prd.md  # Project _bmad path
-{planning_artifacts}/prd.md           # Config var (already has full path)
+prompts/capability.md                 # Skill-internal (bare relative)
+{project-root}/_bmad/_memory/x-sidecar/  # Project _bmad path
+{output_folder}/report.md            # Config var (already has full path)
 ```
 
 **Never use:**

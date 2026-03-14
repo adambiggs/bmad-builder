@@ -4,7 +4,7 @@
 
 | Field | Description | Example |
 |-------|-------------|---------|
-| `name` | Full skill name (kebab-case) | `bmad-bmb-workflow-builder`, `bmad-validate-json` |
+| `name` | Full skill name (kebab-case) | `bmad-workflow-builder`, `bmad-validate-json` |
 | `skillName` | Functional name (kebab-case) | `workflow-builder`, `validate-json` |
 | `description` | [5-8 word summary]. [Use when user says 'X' or 'Y'.] | "Builds workflows through conversational discovery. Use when the user requests to 'build a workflow' or 'modify a workflow'." |
 | `role-guidance` | Brief expertise primer | "Act as a senior DevOps engineer" |

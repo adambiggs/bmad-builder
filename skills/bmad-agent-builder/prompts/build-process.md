@@ -19,7 +19,7 @@ If editing/converting an existing agent: read it, analyze what exists vs what's 
 
 Early check: internal capabilities only, external skills, both, or unclear?
 
-**If external skills involved:** Suggest `bmad-bmb-module-builder` to bundle agents + skills into a cohesive module. Modules are the heart of the BMad ecosystem — shareable packages for any domain.
+**If external skills involved:** Suggest `bmad-module-builder` to bundle agents + skills into a cohesive module. Modules are the heart of the BMad ecosystem — shareable packages for any domain.
 
 **Scripts consideration:** Are there deterministic operations that should be offloaded from the LLM? Examples:
 - File validation (JSON schemas, data formats)

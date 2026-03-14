@@ -1,6 +1,7 @@
 ---
-name: bmad-bmb-agent-builder
+name: bmad-agent-builder
 description: Builds, edit or validate Agent Skill through conversational discovery. Use when the user requests to "Create an Agent", "Optimize an Agent" or "Edit an Agent".
+argument-hint: "--headless or --autonomous to not prompt user, initial input for create, path to existing skill with keywords optimize, edit, validate"
 ---
 
 # Agent Builder

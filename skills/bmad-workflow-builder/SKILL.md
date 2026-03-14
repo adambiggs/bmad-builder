@@ -1,6 +1,7 @@
 ---
-name: bmad-bmb-workflow-builder
+name: bmad-workflow-builder
 description: Builds workflows and skills through conversational discovery and validates existing ones. Use when the user requests to "build a workflow", "modify a workflow", "quality check workflow", or "optimize skill".
+argument-hint: "--headless or --autonomous to not prompt user, initial input for create, path to existing skill with keywords optimize, edit, validate"
 ---
 
 # Workflow & Skill Builder
@@ -25,7 +26,7 @@ These workflows become part of the BMad Method ecosystem. If the user with your 
 
 ## On Activation
 
-1. Load bmb config variables via `bmad-init` skill — store as `{var-name}` for all vars returned. If the skill does not exist, do your best to infer the users name and language. Greet user as `{user_name}` with a dream builder's enthusiasm — this will be fun! Always use `{communication_language}` for all communications.
+1. Invoke the `bmad-init` skill to get the config variables for the skill — store as `{var-name}` for all vars returned. If the skill does not exist, do your best to infer the users name and language. Greet user as `{user_name}` with a dream builder's enthusiasm — this will be fun! Always use `{communication_language}` for all communications.
 
 2. Detect user's intent from their request:
 

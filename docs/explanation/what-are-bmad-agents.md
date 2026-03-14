@@ -63,6 +63,6 @@ If you are unsure, start with a workflow. You can always wrap it inside an agent
 
 ## Building Agents
 
-The **BMad Agent Builder** (`bmad-bmb-agent-builder`) walks you through a six-phase conversational discovery process — from intent through capabilities, requirements, drafting, building, and quality optimization. It produces a ready-to-use skill folder you can drop into your tools' skills directory.
+The **BMad Agent Builder** (`bmad-agent-builder`) walks you through a six-phase conversational discovery process — from intent through capabilities, requirements, drafting, building, and quality optimization. It produces a ready-to-use skill folder you can drop into your tools' skills directory.
 
 See the [Builder Commands Reference](/reference/builder-commands.md) for details on the build process phases and capabilities.

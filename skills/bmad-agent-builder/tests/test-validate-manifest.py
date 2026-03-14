@@ -27,7 +27,7 @@ except ImportError:
 # Path to the manifest.py script
 SCRIPT_PATH = Path(__file__).parent.parent / "scripts" / "manifest.py"
 # Path to the schema
-SCHEMA_PATH = Path(__file__).parent.parent / "bmad-manifest-schema.json"
+SCHEMA_PATH = Path(__file__).parent.parent / "scripts" / "bmad-manifest-schema.json"
 
 
 def run_validator(manifest: dict) -> tuple[int, str, str]:
