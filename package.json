@@ -13,8 +13,12 @@
   },
   "license": "MIT",
   "author": "Brian (BMad) Madison",
+  "files": [
+    "src/",
+    "skills/",
+    "CHANGELOG.md"
+  ],
   "main": "",
-  "bin": {},
   "scripts": {
     "docs:build": "node tools/build-docs.mjs",
     "docs:dev": "astro dev --root website",
