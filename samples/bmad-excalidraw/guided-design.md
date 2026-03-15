@@ -15,7 +15,7 @@ Capture any details they've already provided — don't re-ask what they've told 
 
 ## Step 2: Suggest Diagram Type
 
-Load `resources/diagram-types.md` for the full catalog.
+Load `references/diagram-types.md` for the full catalog.
 
 Based on what you know, suggest the best-fit diagram type(s) with reasoning:
 
@@ -77,4 +77,4 @@ Ask: "Ready to generate, or want to adjust anything?"
 
 ## Progression
 
-When the user confirms → proceed to `prompts/diagram-generation.md` with the complete specification.
+When the user confirms → proceed to `diagram-generation.md` with the complete specification.

@@ -19,7 +19,7 @@ Check activation context immediately:
 
 1. **Autonomous mode**: If the user passes `--headless`/`-H` flags, or provides structured inputs clearly intended for headless execution:
    - Ingest all provided inputs, fan out subagents, produce complete brief without interaction
-   - Route directly to `prompts/contextual-discovery.md` with `{mode}=headless`
+   - Route directly to `contextual-discovery.md` with `{mode}=headless`
 
 2. **Yolo mode**: If the user passes `--yolo` or says "just draft it" / "draft the whole thing":
    - Ingest everything, draft complete brief upfront, then walk user through refinement
@@ -69,17 +69,17 @@ Check activation context immediately:
 
 **Capture-don't-interrupt:** If the user shares details beyond brief scope (requirements, platform preferences, technical constraints, timeline), capture them silently for the distillate. Don't redirect or stop their flow.
 
-**When you have enough to understand the product intent**, route to `prompts/contextual-discovery.md` with the current mode.
+**When you have enough to understand the product intent**, route to `contextual-discovery.md` with the current mode.
 
 ## Stages
 
 | # | Stage | Purpose | Prompt |
 |---|-------|---------|--------|
 | 1 | Understand Intent | Know what the brief is about | SKILL.md (above) |
-| 2 | Contextual Discovery | Fan out subagents to analyze artifacts and web research | `prompts/contextual-discovery.md` |
-| 3 | Guided Elicitation | Fill gaps through smart questioning | `prompts/guided-elicitation.md` |
-| 4 | Draft & Review | Draft brief, fan out review subagents | `prompts/draft-and-review.md` |
-| 5 | Finalize | Polish, output, offer distillate | `prompts/finalize.md` |
+| 2 | Contextual Discovery | Fan out subagents to analyze artifacts and web research | `contextual-discovery.md` |
+| 3 | Guided Elicitation | Fill gaps through smart questioning | `guided-elicitation.md` |
+| 4 | Draft & Review | Draft brief, fan out review subagents | `draft-and-review.md` |
+| 5 | Finalize | Polish, output, offer distillate | `finalize.md` |
 
 ## External Skills
 

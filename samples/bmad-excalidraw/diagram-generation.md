@@ -9,7 +9,7 @@ Generate a valid `.excalidraw` file from the diagram specification. Use the sche
 
 ## Step 1: Build the Diagram Specification
 
-Create a JSON specification that the generation script can consume. Load `resources/excalidraw-schema.md` for the element format reference.
+Create a JSON specification that the generation script can consume. Load `references/excalidraw-schema.md` for the element format reference.
 
 The specification format:
 

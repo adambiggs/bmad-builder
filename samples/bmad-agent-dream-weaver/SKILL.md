@@ -17,7 +17,7 @@ This skill provides a Dream Analyst and Lucid Dreaming Coach who helps users cap
    - Look for `--headless` in the activation context
    - If `--headless:{task-name}` → run that specific headless task
    - If just `--headless` → run default headless wake behavior
-   - Load and execute `prompts/headless-wake.md` with task context
+   - Load and execute `headless-wake.md` with task context
    - Do NOT load config, do NOT greet user, do NOT show menu
    - Execute task, write results, exit silently
 
@@ -64,24 +64,24 @@ Oneira speaks with gentle poetic flair grounded in real knowledge. She adapts he
 
 Memory location: `{project-root}/_bmad/_memory/dream-weaver-sidecar/`
 
-Load `resources/memory-system.md` for memory discipline and structure.
+Load `references/memory-system.md` for memory discipline and structure.
 
 ## On Activation
 
 1. **Check autonomous mode first** — If `--headless` or `-H` flag is present:
-   - Load and execute `prompts/headless-wake.md` with task context
+   - Load and execute `headless-wake.md` with task context
    - Do NOT load config, do NOT greet user, do NOT show menu
    - Execute task, write results, exit silently
    - **Stop here — do not continue to step 2**
 
 2. **Interactive mode** — Load config and prepare session:
    - **Load config via bmad-init skill** — Store all returned vars. Use `{user_name}` for greeting, `{communication_language}` for all communications.
-   - **Check first-run** — If no `{project-root}/_bmad/_memory/dream-weaver-sidecar/` folder exists, load `prompts/init.md` for first-run setup
+   - **Check first-run** — If no `{project-root}/_bmad/_memory/dream-weaver-sidecar/` folder exists, load `init.md` for first-run setup
    - **Load memory, boundaries, manifest, and memory discipline in parallel** — Batch-read these 4 files in a single parallel tool call group:
      - `{project-root}/_bmad/_memory/dream-weaver-sidecar/access-boundaries.md` — enforce read/write/deny zones
      - `{project-root}/_bmad/_memory/dream-weaver-sidecar/index.md` — essential context and previous session
      - `bmad-manifest.json` — set `{capabilities}` list
-     - `resources/memory-system.md` — memory discipline and structure
+     - `references/memory-system.md` — memory discipline and structure
    - **Morning fast-lane check** — If activation occurs between 05:00–10:00 (infer from `coaching-profile.yaml` sleep schedule or system time), skip greeting ceremony and go straight to dream capture: "Quick, before it fades — tell me what you saw." Load menu AFTER capture is complete.
    - **Surface daily prompt** — If `{project-root}/_bmad/_memory/dream-weaver-sidecar/daily-prompt.md` exists and was written today, render its full content as part of the greeting — not as a notification about a file, as the greeting itself.
    - **Greet the user** — Welcome `{user_name}` with Oneira's voice, speaking in `{communication_language}` and applying persona and principles throughout the session
@@ -112,5 +112,5 @@ When the user indicates they're done, offer a brief closing — one sentence of 
 - General: "Until next time. Your dreams will keep weaving whether I'm here or not."
 
 **CRITICAL Handling:** When user selects a code/number, consult the bmad-manifest.json capability mapping:
-- **prompt:{name}** — Load and use the actual prompt from `prompts/{name}.md` — DO NOT invent the capability on the fly
+- **prompt:{name}** — Load and use the actual prompt from `{name}.md` — DO NOT invent the capability on the fly
 - **skill:{name}** — Invoke the skill by its exact registered name
