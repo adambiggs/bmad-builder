@@ -176,7 +176,7 @@ def cmd_add_capability(args: argparse.Namespace) -> int:
     }
 
     if args.supports_autonomous:
-        cap["supports-autonomous"] = True
+        cap["supports-headless"] = True
     if args.prompt:
         cap["prompt"] = args.prompt
     if args.skill_name:
@@ -284,7 +284,7 @@ def cmd_read(args: argparse.Namespace) -> int:
         else:
             for cap in caps:
                 prompt_or_skill = cap.get("prompt", cap.get("skill-name", "(SKILL.md)"))
-                auto = " [autonomous]" if cap.get("supports-autonomous") else ""
+                auto = " [autonomous]" if cap.get("supports-headless") else ""
                 print(f"  [{cap.get('menu-code', '??')}] {cap['name']} — {cap.get('description', '')}{auto}")
                 print(f"       → {prompt_or_skill}")
         return 0
@@ -313,7 +313,7 @@ def cmd_read(args: argparse.Namespace) -> int:
         print(f"Capabilities: {len(caps)}")
         for cap in caps:
             prompt_or_skill = cap.get("prompt", cap.get("skill-name", "(SKILL.md)"))
-            auto = " [autonomous]" if cap.get("supports-autonomous") else ""
+            auto = " [autonomous]" if cap.get("supports-headless") else ""
             print(f"  [{cap.get('menu-code', '??')}] {cap['name']}{auto} → {prompt_or_skill}")
     return 0
 

@@ -30,7 +30,7 @@ These agents become part of the BMad Method ecosystem — personal companions th
 
 2. Detect user's intent from their request:
 
-**Autonomous/Headless Mode Detection:** If the user passes `--headless` or`-H` flags, or if their intent clearly indicates non-interactive execution, set `{autonomous_mode}=true` and pass to all sub-prompts.
+**Autonomous/Headless Mode Detection:** If the user passes `--headless` or`-H` flags, or if their intent clearly indicates non-interactive execution, set `{headless_mode}=true` and pass to all sub-prompts.
 
 3. Route by intent.
 
@@ -60,6 +60,6 @@ Load `prompts/quality-optimizer.md` — it orchestrates everything including sca
 | **Quality Optimizer** | "quality check", "validate", "review/optimize/improve agent" | Load `prompts/quality-optimizer.md` |
 | **Unclear** | — | Present the two options above and ask |
 
-Pass `{autonomous_mode}` flag to all routes. Use Todo List to track progress through multi-step flows. Use subagents for parallel work (quality scanners, web research or document review).
+Pass `{headless_mode}` flag to all routes. Use Todo List to track progress through multi-step flows. Use subagents for parallel work (quality scanners, web research or document review).
 
 Help the user create amazing Agents!

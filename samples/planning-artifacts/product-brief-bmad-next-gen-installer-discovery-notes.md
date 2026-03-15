@@ -22,7 +22,7 @@ purpose: "Detailed supporting context captured during product brief discovery"
 ## Existing Skill/Manifest Primitives (Already Partially Built)
 
 - Skills already use directory-per-skill layout: `skill-name/SKILL.md` with frontmatter (name, description)
-- `bmad-manifest.json` sidecar files already exist alongside skills — example from product-brief skill: `{"module-code": "bmm", "replaces-skill": "bmad-create-product-brief", "capabilities": [{"name": "create-brief", "menu-code": "CB", "description": "...", "supports-autonomous": true, "phase-name": "1-analysis", "after": ["brainstorming"], "before": ["create-prd"], "is-required": true, "output-location": "{planning_artifacts}"}]}`
+- `bmad-manifest.json` sidecar files already exist alongside skills — example from product-brief skill: `{"module-code": "bmm", "replaces-skill": "bmad-create-product-brief", "capabilities": [{"name": "create-brief", "menu-code": "CB", "description": "...", "supports-headless": true, "phase-name": "1-analysis", "after": ["brainstorming"], "before": ["create-prd"], "is-required": true, "output-location": "{planning_artifacts}"}]}`
 - `bmad-skill-manifest.yaml` files define `canonicalId` and artifact type in source
 - The gap: JSON manifests exist but CSV remains single source of truth; no runtime scanning/registration; manifests are static, generated once at install
 

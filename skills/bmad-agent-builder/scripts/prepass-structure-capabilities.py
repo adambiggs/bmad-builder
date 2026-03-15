@@ -53,7 +53,7 @@ TEMPLATE_ARTIFACTS = [
 RUNTIME_VARS = {
     '{user_name}', '{communication_language}', '{document_output_language}',
     '{project-root}', '{output_folder}', '{planning_artifacts}',
-    '{autonomous_mode}',
+    '{headless_mode}',
 }
 
 # Directness anti-patterns

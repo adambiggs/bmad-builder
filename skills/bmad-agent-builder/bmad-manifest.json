@@ -6,7 +6,7 @@
       "name": "build",
       "menu-code": "BP",
       "description": "Build, edit, or convert agents through six-phase conversational discovery. Covers new agents, format conversion, edits, and fixes.",
-      "supports-autonomous": true,
+      "supports-headless": true,
       "prompt": "prompts/build-process.md",
       "phase-name": "anytime",
       "output-location": "{bmad_builder_output_folder}"
@@ -15,7 +15,7 @@
       "name": "quality-optimize",
       "menu-code": "QO",
       "description": "Comprehensive validation and optimization using lint scripts and LLM scanner subagents. Structure, prompt craft, efficiency, and more.",
-      "supports-autonomous": true,
+      "supports-headless": true,
       "prompt": "prompts/quality-optimizer.md",
       "phase-name": "anytime",
       "output-location": "{bmad_builder_reports}"

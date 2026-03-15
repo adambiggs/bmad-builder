@@ -120,7 +120,7 @@ This is one of the most transformative "what ifs" you can ask about a HITL workf
 **When the skill IS adaptable, suggest the output contract:**
 - What would a headless invocation return? (file path, JSON summary, status code)
 - What inputs would it need upfront? (parameters that currently come from conversation)
-- Where would the `{autonomous_mode}` flag need to be checked?
+- Where would the `{headless_mode}` flag need to be checked?
 - Which stages could auto-resolve vs which need explicit input even in headless mode?
 
 **Don't force it.** Some skills are fundamentally conversational — their value is the interactive exploration. Flag those as "fundamentally interactive" and move on. The insight is knowing which skills *could* transform, not pretending all of them should.

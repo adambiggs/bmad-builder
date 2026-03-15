@@ -24,7 +24,7 @@ Your job:
 
 ## Autonomous Mode
 
-**Check if `{autonomous_mode}=true`** — If set, run in headless mode:
+**Check if `{headless_mode}=true`** — If set, run in headless mode:
 - **Skip ALL questions** — proceed with safe defaults
 - **Uncommitted changes:** Note in report, don't ask
 - **Agent functioning:** Assume yes, note in report that user should verify
@@ -34,7 +34,7 @@ Your job:
 **Autonomous mode output:**
 ```json
 {
-  "autonomous_mode": true,
+  "headless_mode": true,
   "report_file": "{path-to-report}",
   "summary": { ... },
   "warnings": ["Uncommitted changes detected", "Agent functioning not verified"]
@@ -45,12 +45,12 @@ Your job:
 
 Before running any scans:
 
-**IF `{autonomous_mode}=true`:**
+**IF `{headless_mode}=true`:**
 1. **Check for uncommitted changes** — Run `git status`. Note in warnings array if found.
 2. **Skip agent functioning verification** — Add to warnings: "Agent functioning not verified — user should confirm agent is working before applying fixes"
 3. **Proceed directly to scans**
 
-**IF `{autonomous_mode}=false` or not set:**
+**IF `{headless_mode}=false` or not set:**
 1. **Check for uncommitted changes** — Run `git status` on the repository. If uncommitted changes:
    - Warn: "You have uncommitted changes. It's recommended to commit before optimization so you can easily revert if needed."
    - Ask: "Do you want to proceed anyway, or commit first?"
@@ -97,6 +97,7 @@ These extract metrics for the LLM scanners so they work from compact data instea
 | L3 | `agents/quality-scan-execution-efficiency.md` | Parallelization, subagent delegation, memory loading, context optimization | Yes — receives dep graph JSON | `execution-efficiency-temp.json` |
 | L4 | `agents/quality-scan-agent-cohesion.md` | Persona-capability alignment, gaps, redundancies, coherence | No | `agent-cohesion-temp.json` |
 | L5 | `agents/quality-scan-enhancement-opportunities.md` | Script automation, autonomous potential, edge cases, experience gaps, delight | No | `enhancement-opportunities-temp.json` |
+| L6 | `agents/quality-scan-script-opportunities.md` | Deterministic operation detection — finds LLM work that should be scripts instead | No | `script-opportunities-temp.json` |
 
 ## Execution Instructions
 
@@ -121,7 +122,7 @@ After scripts complete, spawn applicable LLM scanners as parallel subagents.
 
 **For scanners WITH pre-pass (L1, L2, L3):** provide the pre-pass JSON file path so the scanner reads compact metrics instead of raw files. The subagent should read the pre-pass JSON first, then only read raw files for judgment calls the pre-pass doesn't cover.
 
-**For scanners WITHOUT pre-pass (L4, L5):** provide just the skill path and output directory.
+**For scanners WITHOUT pre-pass (L4, L5, L6):** provide just the skill path and output directory.
 
 Each subagent receives:
 - Scanner file to load (e.g., `agents/quality-scan-agent-cohesion.md`)
@@ -161,11 +162,11 @@ After all scripts and scanners complete:
 
 After receiving the JSON summary from the report creator:
 
-**IF `{autonomous_mode}=true`:**
+**IF `{headless_mode}=true`:**
 1. **Output structured JSON:**
 ```json
 {
-  "autonomous_mode": true,
+  "headless_mode": true,
   "scan_completed": true,
   "report_file": "{full-path-to-report}",
   "warnings": ["any warnings from pre-scan checks"],
@@ -182,7 +183,7 @@ After receiving the JSON summary from the report creator:
 ```
 2. **Exit** — Don't offer next steps, don't ask questions
 
-**IF `{autonomous_mode}=false` or not set:**
+**IF `{headless_mode}=false` or not set:**
 1. **High-level summary** with total issues by severity
 2. **Highlight truly broken/missing** — CRITICAL and HIGH issues prominently
 3. **Mention detailed report** — "Full report saved to: {report_file}"

@@ -35,7 +35,7 @@ description: [5-8 word summary]. [Use when user says 'X' or 'Y'.]
       "name": "build",
       "menu-code": "BP",
       "description": "Builds agents through conversational discovery. Outputs to skill folder.",
-      "supports-autonomous": true,
+      "supports-headless": true,
       "prompt": "prompts/build-process.md",
       "phase-name": "anytime",
       "after": ["create-prd"],
@@ -47,7 +47,7 @@ description: [5-8 word summary]. [Use when user says 'X' or 'Y'.]
       "name": "external-tool",
       "menu-code": "ET",
       "description": "Delegates to another registered skill.",
-      "supports-autonomous": false,
+      "supports-headless": false,
       "skill-name": "bmad-some-other-skill"
     }
   ]

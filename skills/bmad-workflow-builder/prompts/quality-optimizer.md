@@ -22,7 +22,7 @@ Your job:
 
 ## Autonomous Mode
 
-**Check if `{autonomous_mode}=true`** — If set, run in headless mode:
+**Check if `{headless_mode}=true`** — If set, run in headless mode:
 - **Skip ALL questions** — proceed with safe defaults
 - **Uncommitted changes:** Note in report, don't ask
 - **Workflow functioning:** Assume yes, note in report that user should verify
@@ -32,7 +32,7 @@ Your job:
 **Autonomous mode output:**
 ```json
 {
-  "autonomous_mode": true,
+  "headless_mode": true,
   "report_file": "{path-to-report}",
   "summary": { ... },
   "warnings": ["Uncommitted changes detected", "Workflow functioning not verified"]
@@ -43,12 +43,12 @@ Your job:
 
 Before running any scans:
 
-**IF `{autonomous_mode}=true`:**
+**IF `{headless_mode}=true`:**
 1. **Check for uncommitted changes** — Run `git status`. Note in warnings array if found.
 2. **Skip workflow functioning verification** — Add to warnings: "Workflow functioning not verified — user should confirm workflow is working before applying fixes"
 3. **Proceed directly to scans**
 
-**IF `{autonomous_mode}=false` or not set:**
+**IF `{headless_mode}=false` or not set:**
 1. **Check for uncommitted changes** — Run `git status` on the repository. If uncommitted changes:
    - Warn: "You have uncommitted changes. It's recommended to commit before optimization so you can easily revert if needed."
    - Ask: "Do you want to proceed anyway, or commit first?"
@@ -96,6 +96,7 @@ These extract metrics for the LLM scanners so they work from compact data instea
 | L3 | `agents/quality-scan-execution-efficiency.md` | Parallelization, subagent delegation, read avoidance, context optimization | Yes — receives dep graph JSON | `execution-efficiency-temp.json` |
 | L4 | `agents/quality-scan-skill-cohesion.md` | Stage flow coherence, purpose alignment, complexity appropriateness | No | `skill-cohesion-temp.json` |
 | L5 | `agents/quality-scan-enhancement-opportunities.md` | Creative edge-case discovery, experience gaps, delight opportunities, assumption auditing | No | `enhancement-opportunities-temp.json` |
+| L6 | `agents/quality-scan-script-opportunities.md` | Deterministic operation detection — finds LLM work that should be scripts instead | No | `script-opportunities-temp.json` |
 
 ## Execution Instructions
 
@@ -160,11 +161,11 @@ After all scripts and scanners complete:
 
 After receiving the JSON summary from the report creator:
 
-**IF `{autonomous_mode}=true`:**
+**IF `{headless_mode}=true`:**
 1. **Output structured JSON:**
 ```json
 {
-  "autonomous_mode": true,
+  "headless_mode": true,
   "scan_completed": true,
   "report_file": "{full-path-to-report}",
   "warnings": ["any warnings from pre-scan checks"],
@@ -181,7 +182,7 @@ After receiving the JSON summary from the report creator:
 ```
 2. **Exit** — Don't offer next steps, don't ask questions
 
-**IF `{autonomous_mode}=false` or not set:**
+**IF `{headless_mode}=false` or not set:**
 1. **High-level summary** with total issues by severity
 2. **Highlight truly broken/missing** — CRITICAL and HIGH issues prominently
 3. **Mention detailed report** — "Full report saved to: {report_file}"

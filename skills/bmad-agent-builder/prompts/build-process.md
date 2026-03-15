@@ -21,13 +21,28 @@ Early check: internal capabilities only, external skills, both, or unclear?
 
 **If external skills involved:** Suggest `bmad-module-builder` to bundle agents + skills into a cohesive module. Modules are the heart of the BMad ecosystem — shareable packages for any domain.
 
-**Scripts consideration:** Are there deterministic operations that should be offloaded from the LLM? Examples:
-- File validation (JSON schemas, data formats)
-- Data processing/conversion
-- System operations (file system, network calls)
-- Deterministic calculations
+**Script Opportunity Discovery** (active probing — do not skip):
+Walk through each planned capability with the user and apply these filters:
+1. "Does this operation have clear pass/fail criteria?" → Script candidate
+2. "Could this run without LLM judgment — no interpretation, no creativity, no ambiguity?" → Strong script candidate
+3. "Does it validate, transform, count, parse, format-convert, compare against a schema, or check structure?" → Almost certainly a script
 
-If yes, plan for `scripts/` folder with appropriate Python/shell scripts. Scripts should be invoked from prompts when needed, not run automatically.
+**Common script-worthy operations:**
+- Schema/format validation (JSON, YAML, frontmatter, file structure)
+- Data extraction and transformation (parsing, restructuring, field mapping)
+- Counting, aggregation, and metric collection (token counts, file counts, summary stats)
+- File/directory structure checks (existence, naming conventions, required files)
+- Pattern matching against known standards (path conventions, naming rules)
+- Comparison operations (diff, version compare, before/after, cross-reference checking)
+- Dependency graphing (parsing imports, references, manifest entries)
+- Memory structure validation (required sections, path correctness)
+- Access boundary extraction and verification
+- Pre-processing for LLM capabilities (extract compact metrics from large files so the LLM works from structured data, not raw content)
+- Post-processing validation (verify LLM output conforms to expected schema/structure)
+
+**Present your script plan**: Before moving to Phase 3, explicitly tell the user which operations you plan to implement as scripts vs. prompts, with one-line reasoning for each. Ask if they agree or want to adjust.
+
+If scripts are planned, the `scripts/` folder will be created. Scripts are invoked from prompts when needed, not run automatically.
 
 ## Phase 3: Gather Requirements
 
@@ -91,7 +106,7 @@ Once you have a cohesive idea, think one level deeper. Once you have done this, 
 
 **Load based on context:**
 - **If module-based:** Load `resources/metadata-reference.md` — manifest.json field definitions, module metadata structure, config loading requirements
-- **If skill includes scripts:** Load `resources/script-opportunities-reference.md` — script output standards and implementation checklist
+- **Always load** `resources/script-opportunities-reference.md` — script opportunity spotting guide, catalog, and output standards. Use this to identify additional script opportunities not caught in Phase 2, even if no scripts were initially planned.
 
 When confirmed:
 

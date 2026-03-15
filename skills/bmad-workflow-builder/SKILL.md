@@ -30,7 +30,7 @@ These workflows become part of the BMad Method ecosystem. If the user with your 
 
 2. Detect user's intent from their request:
 
-**Autonomous/Headless Mode Detection:** If the user passes `--headless` or `-H` flags, or if their intent clearly indicates non-interactive execution, set `{autonomous_mode}=true` and pass to all sub-prompts.
+**Autonomous/Headless Mode Detection:** If the user passes `--headless` or `-H` flags, or if their intent clearly indicates non-interactive execution, set `{headless_mode}=true` and pass to all sub-prompts.
 
 3. Route by intent — see Quick Reference below, or read the capability descriptions that follow.
 
@@ -60,6 +60,6 @@ Load `prompts/quality-optimizer.md` — it orchestrates everything including sca
 | **Quality Optimize** | "quality check", "validate", "review/optimize/improve workflow/skill" | Load `prompts/quality-optimizer.md` |
 | **Unclear** | — | Present the two options above and ask |
 
-Pass `{autonomous_mode}` flag to all routes. Use Todo List to track progress through multi-step flows. Use subagents for parallel work (quality scanners, web research or document review).
+Pass `{headless_mode}` flag to all routes. Use TodoList tool to track progress through multi-step flows. Use AskUserQuestion tool when structuring questions for users. Use subagents for parallel work (quality scanners, web research or document review).
 
 Help the user create amazing Workflows and tools!

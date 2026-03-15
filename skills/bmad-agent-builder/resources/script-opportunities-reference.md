@@ -12,6 +12,54 @@ Scripts validate structure and syntax (deterministic). Prompts evaluate semantic
 
 ---
 
+## How to Spot Script Opportunities
+
+During build, walk through every capability/operation and apply these tests:
+
+### The Determinism Test
+For each operation the agent performs, ask:
+- Given identical input, will this ALWAYS produce identical output? → Script
+- Does this require interpreting meaning, tone, context, or ambiguity? → Prompt
+- Could you write a unit test with expected output for every input? → Script
+
+### The Judgment Boundary
+Scripts handle: fetch, transform, validate, count, parse, compare, extract, format, check structure
+Prompts handle: interpret, classify with ambiguity, create, decide with incomplete info, evaluate quality, synthesize meaning
+
+### Pattern Recognition Checklist
+Table of signal verbs/patterns mapping to script types:
+| Signal Verb/Pattern | Script Type |
+|---------------------|-------------|
+| "validate", "check", "verify" | Validation script |
+| "count", "tally", "aggregate", "sum" | Metric/counting script |
+| "extract", "parse", "pull from" | Data extraction script |
+| "convert", "transform", "format" | Transformation script |
+| "compare", "diff", "match against" | Comparison script |
+| "scan for", "find all", "list all" | Pattern scanning script |
+| "check structure", "verify exists" | File structure checker |
+| "against schema", "conforms to" | Schema validation script |
+| "graph", "map dependencies" | Dependency analysis script |
+
+### The Outside-the-Box Test
+Beyond obvious validation, consider:
+- Could any data gathering step be a script that returns structured JSON for the LLM to interpret?
+- Could pre-processing reduce what the LLM needs to read?
+- Could post-processing validate what the LLM produced?
+- Could metric collection feed into LLM decision-making without the LLM doing the counting?
+
+### Your Toolbox
+Scripts have access to full capabilities — think broadly:
+- **Bash**: Full shell — `jq`, `grep`, `awk`, `sed`, `find`, `diff`, `wc`, `sort`, `uniq`, `curl`, plus piping and composition
+- **Python**: Standard library (`json`, `yaml`, `pathlib`, `re`, `argparse`, `collections`, `difflib`, `ast`, `csv`, `xml`, etc.) plus PEP 723 inline-declared dependencies (`tiktoken`, `jsonschema`, `pyyaml`, etc.)
+- **System tools**: `git` commands for history/diff/blame, filesystem operations, process execution
+
+If you can express the logic as deterministic code, it's a script candidate.
+
+### The --help Pattern
+All scripts use PEP 723 and `--help`. When a skill's prompt needs to invoke a script, it can say "Run `scripts/foo.py --help` to understand inputs/outputs, then invoke appropriately" instead of inlining the script's interface. This saves tokens in prompts and keeps a single source of truth for the script's API.
+
+---
+
 ## Priority 1: High-Value Validation Scripts
 
 ### 1. Frontmatter Validator

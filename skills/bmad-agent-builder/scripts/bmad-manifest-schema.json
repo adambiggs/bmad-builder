@@ -55,7 +55,7 @@
             "description": "What this capability does and when to suggest it",
             "type": "string"
           },
-          "supports-autonomous": {
+          "supports-headless": {
             "description": "Whether this capability can run without user interaction",
             "type": "boolean"
           },

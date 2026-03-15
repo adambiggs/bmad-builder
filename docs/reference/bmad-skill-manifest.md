@@ -120,7 +120,7 @@ python3 scripts/manifest.py create <skill-path> --module-code mymod --persona ".
 python3 scripts/manifest.py add-capability <skill-path> \
   --name build --menu-code BP \
   --description "Build things" \
-  --supports-autonomous --prompt prompts/build.md
+  --supports-headless --prompt prompts/build.md
 
 # Read manifest summary
 python3 scripts/manifest.py read <skill-path>

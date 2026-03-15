@@ -16,6 +16,8 @@ Scripts handle plumbing (fetch, transform, validate). Prompts handle judgment (i
 
 **Test:** If a script contains an `if` that decides what content *means*, intelligence has leaked.
 
+**Reverse test:** If a prompt validates structure, counts items, parses known formats, compares against schemas, or checks file existence — determinism has leaked into the LLM. That work belongs in a script. Scripts have access to full bash, Python with standard library plus PEP 723 dependencies, and system tools — think broadly about what can be offloaded.
+
 ## 3. Progressive Disclosure
 
 SKILL.md stays focused. Detail goes where it belongs.

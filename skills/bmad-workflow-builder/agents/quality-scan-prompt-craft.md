@@ -148,6 +148,7 @@ Stage prompts (`prompts/*.md`) are the working instructions for each phase of ex
 | Scripts handle deterministic operations (validation, parsing, formatting) | Scripts are faster, cheaper, and reproducible |
 | Prompts handle judgment calls (classification, interpretation, adaptation) | AI reasoning is for semantic understanding, not regex |
 | No script-based classification of meaning | If a script uses regex to decide what content MEANS, that's intelligence done badly |
+| No prompt-based deterministic operations | If a prompt validates structure, counts items, parses known formats, or compares against schemas — that work belongs in a script. Flag as `intelligence-placement` with a note that L6 (script-opportunities scanner) will provide detailed analysis |
 
 ### Stage Prompt Context Sufficiency
 

@@ -56,7 +56,25 @@ Work through conversationally, adapted per skill type, so you can either glean f
 - **Design rationale:** Any non-obvious choices the executing agent should understand? (e.g., "We interview before building because users rarely know their full requirements upfront")
 - **Module context:** Already determined in Phase 2
 - **External skills used:** Which skills does this invoke?
-- **Scripts consideration:** Deterministic operations that should be offloaded
+- **Script Opportunity Discovery** (active probing — do not skip):
+  Walk through each planned step/stage with the user and apply these filters:
+  1. "Does this step have clear pass/fail criteria?" → Script candidate
+  2. "Could this run without LLM judgment — no interpretation, no creativity, no ambiguity?" → Strong script candidate
+  3. "Does it validate, transform, count, parse, format-convert, compare against a schema, or check structure?" → Almost certainly a script
+
+  **Common script-worthy operations:**
+  - Schema/format validation (JSON, YAML, frontmatter, file structure)
+  - Data extraction and transformation (parsing, restructuring, field mapping)
+  - Counting, aggregation, and metric collection (token counts, file counts, summary stats)
+  - File/directory structure checks (existence, naming conventions, required files)
+  - Pattern matching against known standards (path conventions, naming rules)
+  - Comparison operations (diff, version compare, before/after, cross-reference checking)
+  - Dependency graphing (parsing imports, references, manifest entries)
+  - Template artifact detection (orphaned placeholders, unresolved variables)
+  - Pre-processing for LLM steps (extract compact metrics from large files so the LLM works from structured data, not raw content)
+  - Post-processing validation (verify LLM output conforms to expected schema/structure)
+
+  **Present your script plan**: Before moving to Phase 4, explicitly tell the user which operations you plan to implement as scripts vs. prompts, with one-line reasoning for each. Ask if they agree or want to adjust.
 - **Creates output documents?** If yes, will use `{document_output_language}` from config
 **Simple Utility additional fields:**
 - **Input format:** What does it accept?
@@ -106,7 +124,7 @@ Once you have a cohesive idea, think one level deeper, clarify with the user any
 **Load based on skill type:**
 - **If Complex Workflow:** Load `resources/complex-workflow-patterns.md` — compaction survival, document-as-cache pattern, config integration, facilitator model, progressive disclosure with prompts/. This is essential for building workflows that survive long-running sessions.
 - **If module-based (any type):** Load `resources/metadata-reference.md` — bmad-manifest.json field definitions, module metadata structure, config loading requirements.
-- **If skill includes scripts:** Load `resources/script-opportunities-reference.md` — script output standards and implementation checklist.
+- **Always load** `resources/script-opportunities-reference.md` — script opportunity spotting guide, catalog, and output standards. Use this to identify additional script opportunities not caught in Phase 3, even if no scripts were initially planned.
 
 When confirmed:
 

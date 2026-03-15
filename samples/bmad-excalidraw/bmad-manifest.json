@@ -4,14 +4,14 @@
       "name": "guided-design",
       "menu-code": "GD",
       "description": "Facilitates diagram design through conversational discovery.",
-      "supports-autonomous": true,
+      "supports-headless": true,
       "prompt": "prompts/guided-design.md"
     },
     {
       "name": "diagram-generation",
       "menu-code": "DG",
       "description": "Generates Excalidraw diagram files from specifications.",
-      "supports-autonomous": true,
+      "supports-headless": true,
       "prompt": "prompts/diagram-generation.md"
     }
   ]

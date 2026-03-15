@@ -93,6 +93,7 @@ Capability prompts (`prompts/*.md`) are the working instructions for each capabi
 | Scripts handle deterministic operations | Faster, cheaper, reproducible |
 | Prompts handle judgment calls | AI reasoning for semantic understanding |
 | No script-based classification of meaning | If regex decides what content MEANS, that's wrong |
+| No prompt-based deterministic operations | If a prompt validates structure, counts items, parses known formats, or compares against schemas — that work belongs in a script. Flag as `intelligence-placement` with a note that L6 (script-opportunities scanner) will provide detailed analysis |
 
 ### Context Sufficiency
 | Check | When to Flag |

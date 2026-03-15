@@ -34,7 +34,7 @@ description: [5-8 word summary]. [Use when user says 'X' or 'Y'.]
       "name": "build",
       "menu-code": "BP",
       "description": "Builds skills through conversational discovery. Outputs to skill folder.",
-      "supports-autonomous": true,
+      "supports-headless": true,
       "prompt": "prompts/build-process.md",
       "phase-name": "design",
       "after": ["create-requirements"],
@@ -46,7 +46,7 @@ description: [5-8 word summary]. [Use when user says 'X' or 'Y'.]
       "name": "validate",
       "menu-code": "VL",
       "description": "Runs validation checks and produces quality report.",
-      "supports-autonomous": true
+      "supports-headless": true
     }
   ]
 }
