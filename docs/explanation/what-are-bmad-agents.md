@@ -19,7 +19,7 @@ Together these create something that feels less like running a command and more 
 
 ## How Memory Works
 
-When an agent launches for the first time in a project, it creates a sidecar memory directory at `_bmad/bmad-memory/<agent-name>/`. On every subsequent launch the agent loads this memory, which is how it remembers your preferences, prior decisions, and anything you told it to retain.
+When an agent launches for the first time in a project, it can create a sidecar memory directory at `_bmad/memory/<agent-name>/`. On every subsequent launch the agent loads this memory, which is how it remembers your preferences, prior decisions, and anything you told it to retain.
 
 Agents can also include a **first-run onboarding** step — a set of questions the agent asks on initial launch so it can configure itself for your needs before you start working together.
 
@@ -41,14 +41,6 @@ You choose the mix when you design the agent. Internal commands keep everything 
 ## Headless Mode
 
 Agents support a headless (autonomous) wake mode. When activated — for example through a cron job or an orchestrator like Open Claw — the agent skips waiting for user input and attempts to complete its tasks independently. This makes agents suitable for background automation while still being conversational when a human is present.
-
-## Registering With BMad Help
-
-Every agent carries a **manifest** that can declare where it fits in a larger workflow sequence. You specify what the agent should run *before*, what it should run *after*, whether it is required or optional, and what output artifact it produces. The BMad Help system reads these manifests so it can recommend the right agent at the right time.
-
-:::note[Example]
-You build a compliance-review agent and mark it as required before `create-architecture`. When a user asks BMad Help to start architecture, it notices the compliance artifact is missing and says: "Talk to the Compliance Review agent first — I don't see its output yet."
-:::
 
 ## When to Build an Agent vs. a Workflow
 

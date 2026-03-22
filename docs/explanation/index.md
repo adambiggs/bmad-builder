@@ -12,6 +12,7 @@ Create world-class AI agents and workflows with the BMad Builder.
 | **[What Are Skills](/explanation/what-are-skills.md)** | The universal building block for everything BMad produces |
 | **[What Are Agents](/explanation/what-are-bmad-agents.md)** | AI personas with specialized capabilities and memory |
 | **[What Are Workflows](/explanation/what-are-workflows.md)** | Structured step-by-step processes and utilities |
+| **[Module Configuration](/explanation/module-configuration.md)** | How modules handle user configuration and help registration through a setup skill |
 
 ## Design Patterns
 
@@ -26,5 +27,4 @@ Create world-class AI agents and workflows with the BMad Builder.
 | Resource | Description |
 |----------|-------------|
 | **[Builder Commands](/reference/builder-commands.md)** | All capabilities, modes, and phases for both builders |
-| **[Skill Manifest](/reference/bmad-skill-manifest.md)** | Field reference for bmad-manifest.json |
 | **[Workflow Patterns](/reference/workflow-patterns.md)** | Skill types, structure patterns, and execution models |

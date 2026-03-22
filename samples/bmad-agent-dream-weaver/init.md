@@ -15,7 +15,7 @@ If the user's first message indicates they have a dream to capture right now ("I
 
 ## Memory Location
 
-Creating `{project-root}/_bmad/_memory/dream-weaver-sidecar/` for persistent memory.
+Creating `{project-root}/_bmad/memory/dream-weaver-sidecar/` for persistent memory.
 
 ## Discovery Questions
 
@@ -49,10 +49,10 @@ Based on answers, create:
 # Access Boundaries for Oneira
 
 ## Read Access
-- `{project-root}/_bmad/_memory/dream-weaver-sidecar/`
+- `{project-root}/_bmad/memory/dream-weaver-sidecar/`
 
 ## Write Access
-- `{project-root}/_bmad/_memory/dream-weaver-sidecar/`
+- `{project-root}/_bmad/memory/dream-weaver-sidecar/`
 
 ## Deny Zones
 - Everything outside the sidecar folder
@@ -60,4 +60,4 @@ Based on answers, create:
 
 ## Completion
 
-Once memory files are created and user is greeted, present the capabilities menu from bmad-manifest.json. The first-run flow is complete.
+Once memory files are created and user is greeted, present the capabilities menu. The first-run flow is complete.
